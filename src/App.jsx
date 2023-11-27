@@ -33,6 +33,31 @@ class App extends Component {
     temperature: 20,
   };
 
+  increaseTemperature = () => {
+    if (this.state.temperature < 29) {
+        this.setState( (prev) => ({...prev, temperature: prev.temperature + 1}))
+    }
+  }
+
+  decreaseTemperature = () => {
+    if (this.state.temperature > 0) {
+        this.setState( (prev) => ({...prev, temperature: prev.temperature - 1}))
+    }
+  }
+
+  createDisplayBackground = () => {
+    const {temperature} = this.state;
+    const classStatus = ['widget-container'];
+    if (temperature < 10) {
+        classStatus.push('cold');
+    } else if (temperature > 20) {
+        classStatus.push('hot');
+    } else {
+        classStatus.push('normal');
+    }
+    return classStatus.join(" ");
+  }
+
   render() {
 
     const {temperature} = this.state;
@@ -43,10 +68,12 @@ class App extends Component {
     const months = newDate.getMonth(); //0-11
     const daysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const background = this.createDisplayBackground();
  
 
     return (
-      <div className="widget-container">
+      <div className={background}>
         <div className="header">
           <div className="current-data">
             <p className="day">{daysArr[weekDay]}</p>
@@ -87,10 +114,10 @@ class App extends Component {
         </div>
         <div className="widget-controllers">
           <div className="button-container">
-            <button className="button" type="button">
+            <button className="button" type="button" onClick={this.decreaseTemperature}>
               Cold
             </button>
-            <button className="button" type="button">
+            <button className="button" type="button" onClick={this.increaseTemperature}>
               Hot
             </button>
           </div>
