@@ -25,6 +25,8 @@
 // export default App;
 
 import React, { Component } from "react";
+// npm i -D sass
+import './temperature.scss';
 
 class App extends Component {
   state = {
@@ -32,12 +34,23 @@ class App extends Component {
   };
 
   render() {
+
+    const {temperature} = this.state;
+
+    const newDate = new Date();
+    const weekDay = newDate.getDay(); //0-6
+    const day = newDate.getDate();
+    const months = newDate.getMonth(); //0-11
+    const daysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthsArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+ 
+
     return (
       <div className="widget-container">
         <div className="header">
           <div className="current-data">
-            <p className="day">days</p>
-            <p className="data">day months</p>
+            <p className="day">{daysArr[weekDay]}</p>
+            <p className="data">{day} {monthsArr[months]}</p>
           </div>
         </div>
         <div className="temperature-display">
@@ -70,7 +83,7 @@ class App extends Component {
               />
             </svg>
           </div>
-          temperature
+          {temperature}
         </div>
         <div className="widget-controllers">
           <div className="button-container">
