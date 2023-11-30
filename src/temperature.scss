@@ -52,3 +52,17 @@ svg {
   display: flex;
   align-items: center;
 }
+
+.button {
+  font-size: 32px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease; /* Плавне переход при зміні стилю підкреслення */
+  background-color: transparent; /* Прозорий фон */
+}
+
+.button:hover {
+  text-decoration: underline;
+}
