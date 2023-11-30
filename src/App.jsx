@@ -4,7 +4,7 @@ import "./temperature.scss";
 
 class App extends Component {
   state = {
-    temperature: 20,
+    temperature: 21,
   };
 
   increaseTemperature = () => {
